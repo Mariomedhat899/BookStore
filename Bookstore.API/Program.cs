@@ -2,48 +2,23 @@ using Bookstore.Infrastructure.Data;
 using Bookstore.Application.Interfaces;
 using Bookstore.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-
+using Bookstore.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-
- builder.Services.AddDbContext<BookStoreDbContext>(options => 
-{
-      options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-
-
-
-
-});
-
- builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
- builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
+builder.Services.AddApplicationServices(builder.Configuration);
 
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
 
+var scope = app.Services.CreateScope();
 
+var context = scope.ServiceProvider.GetRequiredService<BookStoreDbContext>();
 
+await DbInitializer.InitializeAsync(context);
 
-
-
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+app.ConfigureMiddleware();
 
 app.Run();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2QoT7J27xn8=",
+  "dgSpecHash": "2U1C3tdNEak=",
   "success": true,
-  "projectFilePath": "D:\\Mario\\bookstore\\Bookstore.Domain\\Bookstore.Domain.csproj",
+  "projectFilePath": "D:\\Mario\\BookStore\\Bookstore.Domain\\Bookstore.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

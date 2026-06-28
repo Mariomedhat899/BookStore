@@ -3146,11 +3146,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Mario\\bookstore\\Bookstore.Infrastructure\\Bookstore.Infrastructure.csproj",
+      "projectUniqueName": "D:\\Mario\\BookStore\\Bookstore.Infrastructure\\Bookstore.Infrastructure.csproj",
       "projectName": "Bookstore.Infrastructure",
-      "projectPath": "D:\\Mario\\bookstore\\Bookstore.Infrastructure\\Bookstore.Infrastructure.csproj",
+      "projectPath": "D:\\Mario\\BookStore\\Bookstore.Infrastructure\\Bookstore.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\mario\\.nuget\\packages\\",
-      "outputPath": "D:\\Mario\\bookstore\\Bookstore.Infrastructure\\obj\\",
+      "outputPath": "D:\\Mario\\BookStore\\Bookstore.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3172,8 +3172,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\Mario\\bookstore\\Bookstore.Application\\Bookstore.Application.csproj": {
-              "projectPath": "D:\\Mario\\bookstore\\Bookstore.Application\\Bookstore.Application.csproj"
+            "D:\\Mario\\BookStore\\Bookstore.Application\\Bookstore.Application.csproj": {
+              "projectPath": "D:\\Mario\\BookStore\\Bookstore.Application\\Bookstore.Application.csproj"
             }
           }
         }

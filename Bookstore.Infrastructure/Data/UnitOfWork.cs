@@ -8,11 +8,11 @@ namespace Bookstore.Infrastructure.Data;
 public class UnitOfWork : IUnitOfWork
 {
 
-private readonly DbContext _context;
+private readonly BookStoreDbContext _context;
 private IRepository<Author>? _authors;
 private IRepository<Book>? _books;
 
-public UnitOfWork(DbContext context)
+public UnitOfWork(BookStoreDbContext context)
 {
 
    _context = context;

@@ -17,3 +17,4 @@ D:\Mario\Bookstore\Bookstore.Infrastructure\obj\Debug\net10.0\refint\Bookstore.I
 D:\Mario\Bookstore\Bookstore.Infrastructure\obj\Debug\net10.0\Bookstore.Infrastructure.pdb
 D:\Mario\Bookstore\Bookstore.Infrastructure\obj\Debug\net10.0\Bookstore.Infrastructure.genruntimeconfig.cache
 D:\Mario\Bookstore\Bookstore.Infrastructure\obj\Debug\net10.0\ref\Bookstore.Infrastructure.dll
+D:\mario\bookstore\Bookstore.Infrastructure\obj\Debug\net10.0\Bookstore.Infrastructure.sourcelink.json

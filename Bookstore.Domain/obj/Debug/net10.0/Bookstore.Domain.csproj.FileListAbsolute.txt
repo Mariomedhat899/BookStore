@@ -9,3 +9,4 @@ D:\Mario\Bookstore\Bookstore.Domain\obj\Debug\net10.0\Bookstore.Domain.dll
 D:\Mario\Bookstore\Bookstore.Domain\obj\Debug\net10.0\refint\Bookstore.Domain.dll
 D:\Mario\Bookstore\Bookstore.Domain\obj\Debug\net10.0\Bookstore.Domain.pdb
 D:\Mario\Bookstore\Bookstore.Domain\obj\Debug\net10.0\ref\Bookstore.Domain.dll
+D:\mario\bookstore\Bookstore.Domain\obj\Debug\net10.0\Bookstore.Domain.sourcelink.json

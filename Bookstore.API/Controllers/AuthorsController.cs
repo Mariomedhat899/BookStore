@@ -18,22 +18,22 @@ public class AuthorsController : ControllerBase
 
     // TODO: GET /api/authors — get all authors
 
-   [HttpGet]
+    [HttpGet]
 
     public async Task<IActionResult> GetAllAuthorsAsync()
-{
+    {
 
-   var Authors = await _unitOfWork.Authors.GetAllAsync();
+        var Authors = await _unitOfWork.Authors.GetAllAsync();
 
-  return Ok(Authors);
+        return Ok(Authors);
 
 
-}
+    }
 
     // TODO: GET /api/authors/{id} — get one author by id
 
 
-   [HttpGet]
+    [HttpGet("{id:int}" , Name = "GetAuthorById")]
 
    public async Task<IActionResult> GetAuthorByIdAsync(int id)
 {
@@ -73,15 +73,16 @@ public class AuthorsController : ControllerBase
    await _unitOfWork.SaveAsync();
 
 
-  return  CreatedAtAction(nameof(GetAuthorByIdAsync), new{id = author.Id},author);
+        return CreatedAtRoute("GetAuthorById" ,new {id = author.Id },author);
 
 
-  }
+
+    }
 
     // TODO: PUT /api/authors/{id} — update an author
 
 
-  [HttpPut]
+    [HttpPut("{id:int}")]
 
 
   public async Task<IActionResult> UpdateAuthorAsync(AuthorUpdateDto dto,int id)
@@ -108,7 +109,7 @@ public class AuthorsController : ControllerBase
   }
 
     // TODO: DELETE /api/authors/{id} — delete an author
-[HttpDelete("{id}")]
+[HttpDelete("{id:int}")]
 
 
   public async Task<IActionResult> DeleteAuthorAsync(int id)

@@ -13,3 +13,4 @@ D:\Mario\Bookstore\Bookstore.Application\obj\Debug\net10.0\Bookstore.Application
 D:\Mario\Bookstore\Bookstore.Application\obj\Debug\net10.0\refint\Bookstore.Application.dll
 D:\Mario\Bookstore\Bookstore.Application\obj\Debug\net10.0\Bookstore.Application.pdb
 D:\Mario\Bookstore\Bookstore.Application\obj\Debug\net10.0\ref\Bookstore.Application.dll
+D:\mario\bookstore\Bookstore.Application\obj\Debug\net10.0\Bookstore.Application.sourcelink.json
