@@ -5,15 +5,27 @@ A RESTful bookstore API built with **Clean Architecture** and **.NET 10**, featu
 ## 🏗️ Architecture
 
 This project follows **Clean Architecture** principles with 4 layers:
+
+```
+Bookstore.Domain        → Entities, business rules (no dependencies)
+Bookstore.Application   → Interfaces, contracts (IRepository<T>, IUnitOfWork)
+Bookstore.Infrastructure → Data access, EF Core, seeding, external services
+Bookstore.API           → Controllers, DTOs, image upload, presentation
+```
+
 **Dependency direction:** API → Application ← Infrastructure → Domain
 
 ## ✨ Features
 
 - ✅ Full CRUD for Authors and Books
-- ✅ Generic Repository Pattern (`IRepository<T>`)
+- ✅ Generic Repository pattern (`IRepository<T>`)
 - ✅ Unit of Work pattern (`IUnitOfWork`)
 - ✅ Entity Framework Core with explicit Fluent API configuration
 - ✅ DTOs for API input/output (separation of concerns)
+- ✅ Book cover image upload (`POST /api/books/{id}/cover`)
+- ✅ Static file serving for cover images (`/covers/{filename}`)
+- ✅ Auto database seeding on startup (5 authors, 10 books)
+- ✅ Database auto-creation on startup
 - ✅ SQL Server LocalDB database
 - ✅ ASP.NET Core Web API with dependency injection
 
@@ -43,11 +55,12 @@ This project follows **Clean Architecture** principles with 4 layers:
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/api/books` | Get all books |
-| `GET` | `/api/books/{id}` | Get book by ID |
+| `GET` | `/api/books` | Get all books (includes author data) |
+| `GET` | `/api/books/{id}` | Get book by ID (includes author data) |
 | `POST` | `/api/books` | Create a new book |
 | `PUT` | `/api/books/{id}` | Update a book |
 | `DELETE` | `/api/books/{id}` | Delete a book |
+| `POST` | `/api/books/{id}/cover` | Upload cover image for a book |
 
 ## 🚀 Getting Started
 
@@ -61,28 +74,25 @@ This project follows **Clean Architecture** principles with 4 layers:
 
 ```bash
 # Clone the repository
-git clone <https://github.com/Mariomedhat899/BookStore.git>
+git clone https://github.com/Mariomedhat899/BookStore.git
 cd BookStore
 
 # Restore dependencies
 dotnet restore
 
-# Update connection string (optional)
-# Edit Bookstore.API/appsettings.json to point to your database
-
-# Apply database migrations
-dotnet ef database update --project Bookstore.Infrastructure --startup-project Bookstore.API
-
-# Run the API
+# Run the API (database is auto-created and seeded)
 dotnet run --project Bookstore.API
+```
 
-he API will be available at https://localhost:5001 or http://localhost:5000.
+The API will be available at `http://localhost:5229`.
 
-📁 Project Structure
+## 📁 Project Structure
+
+```
 BookStore/
 ├── Bookstore.Domain/
 │   └── Entities/
-│       ├── BaseEntity.cs
+│       ├── BaseEntity.cs        ← Id, CreatedAt, UpdatedAt
 │       ├── Author.cs
 │       └── Book.cs
 ├── Bookstore.Application/
@@ -93,28 +103,37 @@ BookStore/
 │   ├── Data/
 │   │   ├── BookStoreDbContext.cs
 │   │   ├── BookstoreDbContextFactory.cs
+│   │   ├── DbInitializer.cs              ← Auto-seeds on startup
 │   │   └── UnitOfWork.cs
 │   ├── Repositories/
-│   │   └── Repository.cs
+│   │   ├── Repository.cs
+│   │   └── BookRepository.cs             ← Override: Include(b => b.Author)
 │   └── Migrations/
 └── Bookstore.API/
     ├── Controllers/
     │   ├── AuthorsController.cs
-    │   └── BooksController.cs
+    │   └── BooksController.cs            ← CRUD + image upload
     ├── DTOs/
     │   ├── AuthorCreateDto.cs
     │   ├── AuthorUpdateDto.cs
     │   ├── BookCreateDto.cs
     │   └── BookUpdateDto.cs
-    └── Program.cs
-
+    ├── Extensions/
+    │   ├── ServiceExtensions.cs          ← Clean Program.cs
+    │   └── MiddlewareExtensions.cs
+    ├── Program.cs
+    └── wwwroot/
+        └── covers/                        ← Cover images folder
+```
 
 ## 🔑 Key Design Decisions
 
 - **Explicit Fluent API** over convention-based mapping — for learning purposes and full control
 - **DTOs in API layer** — keeps domain entities pure, controls what the API exposes
 - **Custom Repository + Unit of Work** — built manually to understand the patterns deeply (EF Core already provides these abstractions)
-- **Book cover images** stored in external folder (not in database) — planned feature
+- **Book cover images** stored in `wwwroot/covers/` folder (not in database) — stored file paths only
+- **Database auto-seeding** — seed data runs automatically on startup if tables are empty
+- **Clean Program.cs** — extension methods for DI and middleware registration
 
 ## 📝 License
 
