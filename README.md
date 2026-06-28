@@ -10,7 +10,7 @@ This project follows **Clean Architecture** principles with 4 layers:
 Bookstore.Domain        → Entities, business rules (no dependencies)
 Bookstore.Application   → Interfaces, contracts (IRepository<T>, IUnitOfWork)
 Bookstore.Infrastructure → Data access, EF Core, seeding, external services
-Bookstore.API           → Controllers, DTOs, image upload, presentation
+Bookstore.API           → Controllers, DTOs, presentation
 ```
 
 **Dependency direction:** API → Application ← Infrastructure → Domain
@@ -92,7 +92,7 @@ The API will be available at `http://localhost:5229`.
 BookStore/
 ├── Bookstore.Domain/
 │   └── Entities/
-│       ├── BaseEntity.cs        ← Id, CreatedAt, UpdatedAt
+│       ├── BaseEntity.cs
 │       ├── Author.cs
 │       └── Book.cs
 ├── Bookstore.Application/
@@ -103,27 +103,27 @@ BookStore/
 │   ├── Data/
 │   │   ├── BookStoreDbContext.cs
 │   │   ├── BookstoreDbContextFactory.cs
-│   │   ├── DbInitializer.cs              ← Auto-seeds on startup
+│   │   ├── DbInitializer.cs
 │   │   └── UnitOfWork.cs
 │   ├── Repositories/
 │   │   ├── Repository.cs
-│   │   └── BookRepository.cs             ← Override: Include(b => b.Author)
+│   │   └── BookRepository.cs
 │   └── Migrations/
 └── Bookstore.API/
     ├── Controllers/
     │   ├── AuthorsController.cs
-    │   └── BooksController.cs            ← CRUD + image upload
+    │   └── BooksController.cs
     ├── DTOs/
     │   ├── AuthorCreateDto.cs
     │   ├── AuthorUpdateDto.cs
     │   ├── BookCreateDto.cs
     │   └── BookUpdateDto.cs
     ├── Extensions/
-    │   ├── ServiceExtensions.cs          ← Clean Program.cs
+    │   ├── ServiceExtensions.cs
     │   └── MiddlewareExtensions.cs
     ├── Program.cs
     └── wwwroot/
-        └── covers/                        ← Cover images folder
+        └── covers/
 ```
 
 ## 🔑 Key Design Decisions
@@ -131,7 +131,7 @@ BookStore/
 - **Explicit Fluent API** over convention-based mapping — for learning purposes and full control
 - **DTOs in API layer** — keeps domain entities pure, controls what the API exposes
 - **Custom Repository + Unit of Work** — built manually to understand the patterns deeply (EF Core already provides these abstractions)
-- **Book cover images** stored in `wwwroot/covers/` folder (not in database) — stored file paths only
+- **Book cover images** stored in `wwwroot/covers/` folder (not in database) — only file paths stored in DB
 - **Database auto-seeding** — seed data runs automatically on startup if tables are empty
 - **Clean Program.cs** — extension methods for DI and middleware registration
 
